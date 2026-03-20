@@ -1,37 +1,28 @@
-import sys 
+import sys
 
-arr = []
-for i in range(1, len(sys.argv)):
-    arr.append(int(sys.argv[i]))
+# Считываем массив
+arr = [int(sys.argv[i]) for i in range(1, len(sys.argv))]
 print('Исходный массив:', arr)
+
+# Сумма четных индексов 
 sum_even = 0
 i = 0
 while i < len(arr):
-    if i % 2 == 0:
-        sum_even += arr[i]
-    i += 1
-print('Сумма четных индексов:', sum_even)
+    sum_even += arr[i]
+    i += 2
+print('Сумма элементов с четными номерами:', sum_even)
 
+# Произведение нечетных индексов 
 multi = 1
 i = 1
 while i < len(arr):
     multi *= arr[i]
-    i += 2   # Сразу переходим к следующему нечетному индексу
-print('Произведение нечетных индексов:', multi)
+    i += 2
+print('Произведение элементов с нечетными номерами:', multi)
 
-min_index = 0
-max_index = 0
-i = 1
-
-while i < len(arr):
-    if arr[i] < arr[min_index]:
-        min_index = i
-    if arr[i] > arr[max_index]:
-        max_index = i
-    i += 1
-
-temp = arr[min_index]
-arr[min_index] = arr[max_index]
-arr[max_index] = temp
+# Замена min и max
+min_i = arr.index(min(arr))
+max_i = arr.index(max(arr))
+arr[min_i], arr[max_i] = arr[max_i], arr[min_i]
 
 print('Массив после замены min и max:', arr)
